@@ -38,6 +38,9 @@ class MovingAverage {
     int[] array;
     int size = 0;
     int counter = 0;
+    //this head and tail is not the actial first index and last index of the array, they are next to each other and 
+    //tail is the last element(if the array is not full, if full, it is the oldest element id the array, which could be replaced) 
+    //in the array and they move forward one index each time.
     int head = 0, tail = 0;
     int sum = 0;
     /** Initialize your data structure here. */
