@@ -31,5 +31,17 @@ private void helper(int[] candidates, int start, int target, int sum,
             list.remove(list.size()-1);
         }
     }
+    //or
+    int prev = -1;
+    for(int i=start; i<candidates.length; i++){
+        if(prev == candidates[i]) {
+            continue; 
+        }
+        list.add(candidates[i]);
+        visited[i] = true;
+        helper(candidates, i + 1, target, sum+candidates[i], list, result, visited);
+        prev = candidates[i];
+        list.remove(list.size()-1);
+    }
 }
 }
