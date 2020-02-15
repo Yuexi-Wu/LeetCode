@@ -27,3 +27,36 @@ class Solution {
         }
     }
 }
+
+
+class Solution {
+    public List<List<Integer>> permuteUnique(int[] nums) {
+        List<List<Integer>> result = new ArrayList<>();
+        List<Integer> list = new ArrayList<>();
+        Arrays.sort(nums);
+        for (int num : nums) {
+            list.add(num);
+        }
+        helper(list, result, new ArrayList<>(), nums.length);
+        return result;
+    }
+    
+    private void helper(List<Integer> nums, List<List<Integer>> result, List<Integer> cur, int len) {
+        if (cur.size() == len) {
+            result.add(new ArrayList<>(cur));
+            return;
+        }
+        //Dynamically remove elements from nums after using. And compare element with the one before it to eliminate duplication.
+        for (int i = 0; i < nums.size(); i++) {
+            if (i != 0 && nums.get(i) == nums.get(i-1)) {
+                continue;
+            }
+            int element = nums.get(i);
+            nums.remove(i);
+            cur.add(element);
+            helper(nums, result, cur, len);
+            cur.remove(cur.size() - 1);
+            nums.add(i, element);
+        }
+    }
+}
