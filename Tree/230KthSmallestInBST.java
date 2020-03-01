@@ -9,6 +9,7 @@
  */
 class Solution {
 //use in-order traversal: sorted list
+    //or we can count the number of children of each node, if there is k-1 child on the left child, then this node is the kth smallest.
     public int kthSmallest(TreeNode root, int k) {
         int[] res = new int[2];
         inorder(root, k, res);
