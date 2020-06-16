@@ -1,0 +1,32 @@
+class Solution {
+    public boolean isAlienSorted(String[] words, String order) {
+        int[] index = new int[26];
+        for (int i = 0; i < 26; i++) {
+            char c = order.charAt(i);
+            index[c-'a'] = i;
+        }
+        search: for (int i = 0; i < words.length-1; i++) {
+            String cur = words[i];
+            String next = words[i+1];
+            if (cur.equals(next)) {
+                continue;
+            }
+            int len = Math.min(cur.length(), next.length());
+            for (int j = 0; j < len; j++) {
+                if (cur.charAt(j) == next.charAt(j)) {
+                    continue;
+                } else {
+                    if (index[cur.charAt(j)-'a'] > index[next.charAt(j)-'a']) {
+                        return false;
+                    }
+                    // break to the outer for loop
+                    continue search;
+                }
+            }
+            if (cur.length() > next.length()) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
