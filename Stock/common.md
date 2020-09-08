@@ -13,11 +13,15 @@ The answer we want here is dp[n-1][k][0]
  -- rest or buy  
    
  !!Important: Base cases  
- dp[-1][k][0] = 0  
- dp[-1][k][1] = MIN_VALUE  
- dp[i][0][0] = 0  
- dp[i][0][1] = MIN_VALUE  
+ `dp[-1][k][0] = 0`  
+ `dp[-1][k][1] = MIN_VALUE;`  
+ `dp[i][0][0] = 0`  
+ `dp[i][0][1] = MIN_VALUE;`  
    
  => `dp[0][k][0] = 0; dp[0][k][1] = -prices[0];`  
  => `dp[i][0][0] = 0; dp[i][0][1] = Integer.MIN_VALUE;`
- 
+   
+  
+If we can have infinite transaction times, then k doesn't matter, so it becomes  
+`dp[i][0] = Math.max(dp[i-1][0], dp[i-1][1] + prices[i])`  
+`dp[i][1] = Math.max(dp[i-1][1], dp[i-1][0] - prices[i])`  
