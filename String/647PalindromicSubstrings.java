@@ -1,5 +1,25 @@
 class Solution {
     public int countSubstrings(String s) {
+        int n = s.length(), ans = 0;
+        // total 2 * n - 1 numbers of centers
+        //  1  1  1  1
+        // a  b  c  b  d
+        // 1  1  1  1  1
+        for (int i = 0; i < 2 * n - 1; i++) {
+            int left = i / 2, right = left + i % 2;
+            while (left >= 0 && right < n && s.charAt(left) == s.charAt(right)) {
+                ans++;
+                left--;
+                right++;
+            }
+        }
+        return ans;
+    }
+}
+
+// initial idea: too slow
+class Solution {
+    public int countSubstrings(String s) {
         int ans = 0;
         for (int i = 0; i < s.length(); i++) {
             for (int j = i + 1; j <= s.length(); j++) {
